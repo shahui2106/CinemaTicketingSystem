@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>ClientBookServlet</servlet-name>
+        <servlet-class>com.zzz.web.ClientBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientBookServlet</servlet-name>
+        <url-pattern>/client/bookServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <display-name>用户登录</display-name>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.zzz.web.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/userServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <display-name>验证码接口</display-name>
+        <servlet-name>Kaptcha</servlet-name>
+        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Kaptcha</servlet-name>
+        <url-pattern>/kaptcha.jpg</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>用户接口</display-name>
+        <servlet-name>userApi</servlet-name>
+        <servlet-class>com.zzz.service.api.UserApi</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userApi</servlet-name>
+        <url-pattern>/api/userInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>电影信息列表接口</display-name>
+        <servlet-name>movieRecycleApi</servlet-name>
+        <servlet-class>com.zzz.service.api.MovieRecycleApi</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>movieRecycleApi</servlet-name>
+        <url-pattern>/api/movieRecycleApi</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>正在热映电影信息接口</display-name>
+        <servlet-name>showingMovieApi</servlet-name>
+        <servlet-class>com.zzz.service.api.ShowingMovieApi</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showingMovieApi</servlet-name>
+        <url-pattern>/api/showingMovieApi</url-pattern>
+    </servlet-mapping>
+</web-app>
