@@ -17,6 +17,7 @@
              * [opts this plug propertys]
              * @type {Obeject}
              */
+            methods.ajaxRequest("http://localhost/CTicket/api/movieRecycleApi", 'setAllMovieNum', _v);
             var opts = _v.data("options");
             var t = opts.totalData, p = opts.pageData, ajaxOpts = null;
             if (opts.ajaxSetData && (typeof (opts.ajaxSetData) === 'boolean')) {
@@ -138,13 +139,12 @@
             return s;
         },
         pageCurrent: function (_id, _class) {
-			/**
-			 * [class current page element calss]
-			 * @type {String}
-			 */
-
-			methods.ajaxRequest("http://localhost/CTicket/api/movieRecycleApi?curPage="+_id);
-			return '<span class="' + _class + '" page-id="' + _id + '">' + _id + '</span>';
+            /**
+             * [class current page element calss]
+             * @type {String}
+             */
+            methods.ajaxRequest("http://localhost/CTicket/api/movieRecycleApi?curPage=" + _id, 'bindMovieRecycle');
+            return '<span class="' + _class + '" page-id="' + _id + '">' + _id + '</span>';
         },
         elliPsis: function () {
             /**
@@ -201,27 +201,68 @@
             return _type === 'prev' ? prev() : next();
         },
 
-        ajaxRequest: function (_url) {
+        ajaxRequest: function (_url, fun, _v) {
             var xmlHttpRequest = new XMLHttpRequest();
             xmlHttpRequest.open("GET", _url, true);
             xmlHttpRequest.onreadystatechange = function () {
                 if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
-                	var jsonobj = JSON.parse(xmlHttpRequest.responseText);
-                    $(".movie-ul").each(function(index1){
-                        $(this).children(".movie-li").each(function (index2) {
-                            var index = index1* 4 + index2;
-                            var movieItem = $(this).children(".movie-item").children();
-                            $(movieItem[0]).attr('src',jsonobj.Movies[index].url);
-                            $(movieItem[1]).text(jsonobj.Movies[index].chinese_name);
-                        })
-                    });
-                	/*$('.movie-item img').attr("src",jsonobj.url);
-                	$('.movie-item h2').text(jsonobj.chinese_name);*/
+                    var jsonobj = JSON.parse(xmlHttpRequest.responseText);
+                    methods.funChoose(jsonobj, fun, _v);
                 }
             };
             xmlHttpRequest.send();
         },
 
+        funChoose: function (jsonobj, fun, _v) {
+            if (fun === 'bindMovieRecycle')
+                methods.bindMovieRecycle(jsonobj);
+            else if (fun === 'setAllMovieNum') {
+                methods.setAllMovieNum(jsonobj, _v);
+            } else if (fun === 'bindMovieInfo') {
+                methods.bindMovieInfo(jsonobj);
+            }
+        },
+
+        setAllMovieNum: function (jsonobj, _v) {
+            _v.data("options").totalData = jsonobj.movieNum;
+        },
+
+        bindMovieInfo: function (jsonobj) {
+           $('.movie-detail-top img').attr('src',jsonobj.img_url);
+            $('.chinese_name').html( "<input name=\"filmName\"  readonly  unselectable=\"on\" value="+jsonobj.chinese_name + ">");
+            $('.english_name').text( jsonobj.english_name);
+            $('.rating').text( jsonobj.rating);
+            $('.director').text( jsonobj.director);
+            $('.actors').text( jsonobj.actors);
+            $('.movie-length').text( jsonobj.length);
+            $('.Movie-type').text( jsonobj.type);
+            $('.movie-country').text( jsonobj.country);
+            $('.movie-release_date').text( jsonobj.release_date);
+            $('.movie-introduction').text( jsonobj.introduction);
+        },
+
+        bindMovieRecycle: function (jsonobj) {
+            var firstMovieItem = null;
+            $(".movie-ul").each(function (index1) {
+                $(this).children(".movie-li").each(function (index2) {
+                    var index = index1 * 4 + index2;
+                    if(index === 0){
+                        firstMovieItem = $(this).children(".movie-item").children();
+                    }
+                    var movieItem = $(this).children(".movie-item").children();
+                    if (jsonobj.Movies[index] !== undefined) {
+                        $(movieItem[0]).show();
+                        $(movieItem[1]).show();
+                        $(movieItem[0]).attr('src', jsonobj.Movies[index].img_url);
+                        $(movieItem[1]).text(jsonobj.Movies[index].chinese_name);
+                    } else {
+                        $(movieItem[0]).hide();
+                        $(movieItem[1]).hide();
+                    }
+                })
+            });
+            methods.ajaxRequest("http://localhost/CTicket/api/movieDetailInfoApi?chineseName=" + $(firstMovieItem[1]).text(),"bindMovieInfo",null);
+        },
 
         ajaxData: function (_url, _current) {
             /**
@@ -297,6 +338,10 @@
         }
     })
 
+    $.fn.updateDetailInfo = function (movieTitle) {
+        methods.ajaxRequest("http://localhost/CTicket/api/movieDetailInfoApi?chineseName="+movieTitle,"bindMovieInfo",null);
+    };
+
     $.fn.extend({
         zPager: function (method) {
             /**
@@ -319,7 +364,7 @@
         pageData: 8, //每页数据条数
         pageCount: 0, //总页数
         current: 1, //当前页码数
-        pageStep: 8, //当前可见最多页码个数
+        pageStep: 6, //当前可见最多页码个数
         minPage: 5, //最小页码数，页码小于此数值则不显示上下分页按钮
         active: 'current', //当前页码样式
         prevBtn: 'pg-prev', //上一页按钮

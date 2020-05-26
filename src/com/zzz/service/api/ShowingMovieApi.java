@@ -2,7 +2,6 @@ package com.zzz.service.api;
 
 import com.google.gson.Gson;
 import com.zzz.bean.Movie;
-import com.zzz.bean.ShowingMoiveInfo;
 import com.zzz.dao.imp.MovieDaoImpl;
 
 import javax.servlet.ServletException;
@@ -24,17 +23,14 @@ public class ShowingMovieApi extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=UTF-8");
         MovieDaoImpl movieDao = new MovieDaoImpl();
-        List<ShowingMoiveInfo> movies = new ArrayList<>();
-        for (Movie movie : movieDao.queryMovieByCountry("中国")) {
-            movies.add(new ShowingMoiveInfo(movie.getChinese_name(), movie.getIntroduction(), movie.getUrl()));
-        }
-        Movies movie = new Movies();
-        movie.setMovie(movies);
-        resp.getWriter().write(gson.toJson(movie));
+        List<Movie> movies = movieDao.queryMovieByCountry("中国");
+        Movies showingMovies = new Movies();
+        showingMovies.setMovie(movies);
+        resp.getWriter().write(gson.toJson(showingMovies));
     }
 
     static class Movies {
-        private List<ShowingMoiveInfo> Movie;
+        private List<Movie> Movie;
 
         @Override
         public String toString() {
@@ -43,11 +39,11 @@ public class ShowingMovieApi extends HttpServlet {
                     '}';
         }
 
-        public List<ShowingMoiveInfo> getMovie() {
+        public List<Movie> getMovie() {
             return Movie;
         }
 
-        public void setMovie(List<ShowingMoiveInfo> movie) {
+        public void setMovie(List<Movie> movie) {
             Movie = movie;
         }
     }

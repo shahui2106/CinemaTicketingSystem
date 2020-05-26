@@ -3,6 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+
     <servlet>
         <servlet-name>ClientBookServlet</servlet-name>
         <servlet-class>com.zzz.web.ClientBookServlet</servlet-class>
@@ -21,6 +23,35 @@
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/userServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>选择电影院</display-name>
+        <servlet-name>chooseCinemaServlet</servlet-name>
+        <servlet-class>com.zzz.web.ChooseCinemaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chooseCinemaServlet</servlet-name>
+        <url-pattern>/chooseCinemaServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>选择影片</display-name>
+        <servlet-name>chooseMovieServlet</servlet-name>
+        <servlet-class>com.zzz.web.ChooseMovieServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chooseMovieServlet</servlet-name>
+        <url-pattern>/chooseMovieServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>选择放映室</display-name>
+        <servlet-name>chooseScreenServlet</servlet-name>
+        <servlet-class>com.zzz.web.ChooseScreenServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chooseScreenServlet</servlet-name>
+        <url-pattern>/chooseScreenServlet</url-pattern>
     </servlet-mapping>
 
 
@@ -44,6 +75,25 @@
         <url-pattern>/api/userInfo</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <display-name>电影详细信息接口</display-name>
+        <servlet-name>movieDetailInfoApi</servlet-name>
+        <servlet-class>com.zzz.service.api.MovieDetailInfoApi</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>movieDetailInfoApi</servlet-name>
+        <url-pattern>/api/movieDetailInfoApi</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>上映时间列表接口</display-name>
+        <servlet-name>showTimesApi</servlet-name>
+        <servlet-class>com.zzz.service.api.ShowTimesApi</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showTimesApi</servlet-name>
+        <url-pattern>/api/showTimesApi</url-pattern>
+    </servlet-mapping>
     <servlet>
         <display-name>电影信息列表接口</display-name>
         <servlet-name>movieRecycleApi</servlet-name>

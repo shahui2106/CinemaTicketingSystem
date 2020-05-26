@@ -24,7 +24,7 @@ public class MovieDaoImpl extends BaseDao implements MovieDao {
     }
 
     @Override
-    public Long queryAllMovie() {
+    public Long queryAllMovieNum() {
         String sql = "select count(*) from movie";
         return (Long) queryForSingleValue(sql);
     }
@@ -35,8 +35,14 @@ public class MovieDaoImpl extends BaseDao implements MovieDao {
         return queryForList(Movie.class,sql,start,end);
     }
 
+    @Override
+    public Movie querySingleMovieInfoByName(String title) {
+        String sql = "select * from movie where chinese_name = ?";
+        return queryForOne(Movie.class,sql,title);
+    }
+
     public static void main(String[] args) {
         MovieDaoImpl movieDao = new MovieDaoImpl();
-        System.out.println(movieDao.queryAllMovie());
+        System.out.println(movieDao.querySingleMovieInfoByName("神奇女侠"));
     }
 }

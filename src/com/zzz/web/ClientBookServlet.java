@@ -11,5 +11,13 @@ import java.io.IOException;
 
 public class ClientBookServlet extends BaseServlet {
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("qing qiu");
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("sdfsdf");
+    }
 }

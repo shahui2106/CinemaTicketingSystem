@@ -122,30 +122,30 @@
 								<form action="userServlet" method="post">
 									<input type="hidden" name="action" value="regist">
 									<label>用户名称：</label>
-									<input class="itxt" type="text" placeholder="请输入用户名"
+									<input class="itxt" type="text" placeholder="请输入用户名" style="margin: 0 12px;"
 										   value="${requestScope.username}"
 										   autocomplete="off" tabindex="1" name="username" id="username" />
 									<br />
 									<br />
 									<label>用户密码：</label>
-									<input class="itxt" type="password" placeholder="请输入密码"
+									<input class="itxt" type="password" placeholder="请输入密码" style="margin: 0 12px;"
 										   autocomplete="off" tabindex="1" name="password" id="password" />
 									<br />
 									<br />
 									<label>确认密码：</label>
-									<input class="itxt" type="password" placeholder="确认密码"
+									<input class="itxt" type="password" placeholder="确认密码" style="margin: 0 12px;"
 										   autocomplete="off" tabindex="1" name="repwd" id="repwd" />
 									<br />
 									<br />
 									<label>手机号码：</label>
-									<input class="itxt" type="text" placeholder="请输入手机号码"
+									<input class="itxt" type="text" placeholder="请输入手机号码" style="margin: 0 12px;"
 										   value="${requestScope.phone}"
 										   autocomplete="off" tabindex="1" name="phone" id="phone" />
 									<br />
 									<br />
 									<label>验证码：</label>
-									<input class="itxt" type="text" name="code" style="width: 60px;height:14px;margin-left: 12px;" id="code" />
-									<img style="float:right;margin:0px 70px 0px 10px;width: 140px;height: auto;" src="kaptcha.jpg" id="kaptchaImage" />
+									<input class="itxt" type="text" name="code" style="width: 60px;height:14px;margin-left: 30px;margin-right: 0;" id="code" />
+									<img style="float:right;margin:13px 20px 0px 10px;width: 140px;height: auto;" src="kaptcha.jpg" id="kaptchaImage" />
 									<%--									<label class="itxt" style="margin-left:10px; padding: 10px" id="randcode" onclick="changecode()">abcd</label>--%>
 									<br />
 									<br />

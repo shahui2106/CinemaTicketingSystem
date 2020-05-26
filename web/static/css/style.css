@@ -1,7 +1,9 @@
 @CHARSET "UTF-8";
 
 body {
-    overflow: hidden;
+    width: 1550px;
+    height: 800px;
+    overflow: auto;
 }
 
 * {
@@ -554,7 +556,7 @@ h1 {
 
 /* 滚动内容样式 */
 .scroll_main {
-    width: 100%;
+    width: 99%;
     display: block;
     background-color: #fff;
 }
@@ -574,6 +576,7 @@ h1 {
 
 .scroll_wrap .scroll_cont p {
     padding: 15px;
+    color: #00CCFF;
 }
 
 /* 滚动条 */
@@ -1367,8 +1370,12 @@ i.right {
 
 .movie-li {
     width: 220px;
+    cursor: pointer;
 }
-
+.movie-detail-top{
+    display: flex;
+    justify-content: space-between;
+}
 .movie-item img {
     width: 218px;
     height: 230px;
@@ -1382,13 +1389,44 @@ i.right {
     float: left;
     margin: 2px auto;
 }
+
+.movie-button{
+    width: 85px;
+    height: 38px;
+    font-size: 12px;
+    display: block;
+    border-radius: 15px;
+    background-color: #f12;
+    color: #fff;
+    padding: 9px;
+    float: right;
+    margin-top: 18px;
+    margin-right: 24px;
+    box-shadow: 3px 3px 3px #cdcdcd;
+}
+
+.movie-button:hover{
+    background-color: #ff112266;
+}
+
+.movie-introduction{
+    text-indent: 2em;
+    font-size: 13px;
+    line-height: 30px;
+    display: -webkit-box;
+    padding: 0 12px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden
+}
+
 .movie-detail-top table {
     margin: 2px;
     width: 240px;
-    height: 204px;
+    height: 236px;
     text-align: start;
-    padding-left: 12px;
-    font-size: 14px;
+    padding-left: 9px;
+    font-size: 13px;
     font-family: 楷体;
 }
 
@@ -1400,7 +1438,7 @@ i.right {
     text-align: start;
     font-size: 16px;
     word-wrap: break-word;
-    word-break: break-all
+    word-break: break-all;
 }
 
 .movie-detail-top{
@@ -1409,4 +1447,57 @@ i.right {
     align-content: center;
 }
 
+.chinese_name input{
+    border: 0;
+    width: 200px;
+    background-color: #efefef;
+}
 
+
+.address ul{
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.address ul li{
+    background-color: #ddeeff66;
+    width: 98%;
+    border-bottom: 1px solid #cdcdcd;
+    margin-bottom: 6px;
+    padding: 16px;
+}
+
+.film_addr:hover{
+    cursor: pointer;
+    color: #c7254e;
+}
+
+.cinema_nameInput{
+    background-color: #ddeeff22;
+    border: 0;
+    font-size: 27px;
+    padding-left: 21px;
+    cursor: pointer
+}
+
+.det_addr span{
+    font-size: 12px;
+    margin: 10px 24px;
+}
+.address button{
+    width: 120px;
+    font-size: 18px;
+    display: block;
+    margin: -61px 75px;
+    border-radius: 15px;
+    background-color: #f12;
+    color: #fff;
+    padding: 9px;
+    box-shadow: 3px 3px 3px #cdcdcd;
+}
+
+.address button:hover{
+    background-color: #ff112266;
+    cursor: pointer;
+}

@@ -1,0 +1,198 @@
+@CHARSET "UTF-8";
+
+body {
+    width: 1550px;
+    height: 800px;
+    overflow: hidden;
+}
+
+* {
+    margin: 0;
+    font-family: "Microsoft Yahei";
+    color: #666;
+}
+
+#header {
+    height: 82px;
+    width: 1200px;
+}
+
+#main {
+    height: 460px;
+    width: 1200px;
+    border: 1px black solid;
+    overflow: auto;
+}
+
+#bottom {
+    height: 50px;
+    width: 95%;
+    text-align: center;
+    margin: 0 37px 0px;
+    background-color: #efefef;
+    float: left;
+    line-height: 30px;
+    padding-top: 13px;
+}
+
+
+#page_nav {
+    width: 100%;
+    height: 10px;
+    margin: auto;
+
+    text-align: center;
+}
+
+#pn_input {
+    width: 30px;
+    text-align: center;
+}
+
+label{
+    margin-left: 24px;
+    font-size: 15px;
+}
+
+.logo_img {
+    float: left;
+    margin: 8px;
+}
+
+#header div a {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#header div {
+    float: right;
+    margin-top: 55px;
+}
+
+/*登录页面CSS样式  */
+.login_name a:hover {
+    color: #c7254e;
+}
+
+
+#login_header {
+    height: 82px;
+    width: 1200px;
+}
+
+.login_banner {
+    width: 98%;
+    margin: 24px auto;
+    height: 520px;
+    background: url(../../static/img/bg.jpg) no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+.login_form {
+    height: 340px;
+    width: 410px;
+    float: right;
+    margin-right: 9%;
+    margin-top: 105px;
+    background-color: #fff
+}
+
+#content {
+    height: 475px;
+    width: 100%;
+}
+
+.login_box {
+    margin: 20px;
+    height: 300px;
+    width: 366px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.msg_cont {
+    background: none repeat scroll 0 0 #fff6d2;
+    border: 1px solid #ffe57d;
+    color: #666;
+    height: 18px;
+    line-height: 18px;
+    padding: 3px 10px 3px 40px;
+    position: relative;
+    border: none;
+    margin-bottom: 12px
+}
+
+.msg_cont b {
+    background: url("../img/pwd-icons-new.png") no-repeat scroll -104px -22px rgba(0, 0, 0, 0);
+    display: block;
+    height: 17px;
+    left: 10px;
+    margin-top: -8px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    width: 16px;
+}
+
+.form .itxt {
+    border: 0 none;
+    float: none;
+    font-family: "宋体";
+    font-size: 14px;
+    height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    margin: 12px 10px;
+    padding: 10px 0 10px 10px;
+    width: 220px;
+    border: 1px #e3e3e3 solid;
+}
+
+#sub_btn {
+    background-color: #39987c;
+    border: none;
+    color: #fff;
+    width: 360px;
+    height: 40px;
+}
+
+#l_content {
+    float: left;
+    margin-top: 150px;
+    margin-left: 300px;
+}
+
+#l_content span {
+    font-size: 60px;
+    color: white;
+}
+
+.tit h1 {
+    float: left;
+    margin-top: 5px;
+}
+
+.tit a {
+    float: right;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: red;
+    text-decoration: none;
+}
+
+.tit .errorMsg {
+    float: right;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: red;
+}
+
+.tit {
+    height: 30px;
+    margin-bottom: 12px
+}
+

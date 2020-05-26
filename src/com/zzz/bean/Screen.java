@@ -4,11 +4,23 @@ import java.sql.Date;
 
 /**
  * @author Zhu
- * @createtime 2020/5/14-21:20
+ * @createtime 2020/5/22-13:58
  */
-public class Movie {
-    private int mid;
+public class Screen {
+    private String language;
+    private float price;
+    private String room;
+    private Date show_date;
+    private String show_time;
+    private int cid;
+    private int sid;
     private String chinese_name;
+    private String seats;
+    private String name;
+    private String address;
+    private String phone;
+    private String city;
+    private int mid;
     private String english_name;
     private String img_url;
     private String type;
@@ -23,9 +35,21 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie{" +
-                "mid=" + mid +
+        return "Screen{" +
+                "language='" + language + '\'' +
+                ", price=" + price +
+                ", room='" + room + '\'' +
+                ", show_date=" + show_date +
+                ", show_time='" + show_time + '\'' +
+                ", cid=" + cid +
+                ", sid=" + sid +
                 ", chinese_name='" + chinese_name + '\'' +
+                ", seats='" + seats + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", city='" + city + '\'' +
+                ", mid=" + mid +
                 ", english_name='" + english_name + '\'' +
                 ", img_url='" + img_url + '\'' +
                 ", type='" + type + '\'' +
@@ -40,12 +64,52 @@ public class Movie {
                 '}';
     }
 
-    public int getMid() {
-        return mid;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setMid(int mid) {
-        this.mid = mid;
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public Date getShow_date() {
+        return show_date;
+    }
+
+    public void setShow_date(Date show_date) {
+        this.show_date = show_date;
+    }
+
+    public String getShow_time() {
+        return show_time;
+    }
+
+    public void setShow_time(String show_time) {
+        this.show_time = show_time;
+    }
+
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
     }
 
     public String getChinese_name() {
@@ -54,6 +118,62 @@ public class Movie {
 
     public void setChinese_name(String chinese_name) {
         this.chinese_name = chinese_name;
+    }
+
+    public String getSeats() {
+        return seats;
+    }
+
+    public void setSeats(String seats) {
+        this.seats = seats;
+    }
+
+    public int getSid() {
+        return sid;
+    }
+
+    public void setSid(int sid) {
+        this.sid = sid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getMid() {
+        return mid;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
     }
 
     public String getEnglish_name() {
