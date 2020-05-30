@@ -15,7 +15,7 @@ public class Screen {
     private int cid;
     private int sid;
     private String chinese_name;
-    private String seats;
+    private String seat;
     private String name;
     private String address;
     private String phone;
@@ -44,7 +44,7 @@ public class Screen {
                 ", cid=" + cid +
                 ", sid=" + sid +
                 ", chinese_name='" + chinese_name + '\'' +
-                ", seats='" + seats + '\'' +
+                ", seat='" + seat + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
@@ -120,12 +120,12 @@ public class Screen {
         this.chinese_name = chinese_name;
     }
 
-    public String getSeats() {
-        return seats;
+    public String getSeat() {
+        return seat;
     }
 
-    public void setSeats(String seats) {
-        this.seats = seats;
+    public void setSeat(String seat) {
+        this.seat = seat;
     }
 
     public int getSid() {

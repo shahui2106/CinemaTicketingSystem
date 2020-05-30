@@ -4,7 +4,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>注册页面</title>
-
+		<link rel="bookmark" href="../../static/img/ding.png">
+		<link rel="shortcut icon" href="../../static/img/ding.png"/>
+		<link rel="icon" href="../../static/img/ding.png" type="image/gif"/>
 		<%-- 静态包含 base标签、css样式、jQuery文件 --%>
 		<%@ include file="/pages/common/head.jsp"%>
 

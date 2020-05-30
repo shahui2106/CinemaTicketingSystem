@@ -38,6 +38,8 @@ public interface CinemaDao {
      */
     public List<Screen> queryScreenByCinemaNameOrDirectorOrActors(String search);
 
+    public Screen queryScreenBySid(int sid);
+
     /**
      * 查询是否含有该影院
      * @param cinemaName 影院
@@ -58,5 +60,12 @@ public interface CinemaDao {
      * @return 如果返回null,说明没有影院信息。反之亦然
      */
     public List<Cinema> queryAllCinema();
+
+    /**
+     * 根据放映室id查询座位号信息
+     * @param Sid
+     * @return
+     */
+    public String querySeatBySid(int Sid);
 
 }

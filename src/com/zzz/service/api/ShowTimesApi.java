@@ -25,7 +25,6 @@ public class ShowTimesApi extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
         String show_date = (String) req.getParameter("show_date");
-        System.out.println("日期" + show_date);
         Map<String, List<Screen>> showDate = (Map<String, List<Screen>>) req.getSession().getAttribute("showDate");
         if (showDate != null && show_date != null) {
             statue.setStatue(200);
@@ -40,6 +39,7 @@ public class ShowTimesApi extends HttpServlet {
                 item.setEndTime(split[1]);
                 item.setPrice(screen.getPrice());
                 item.setRoom(screen.getRoom());
+                item.setSid(screen.getSid());
                 items.add(item);
             }
             statue.setObject(items);
@@ -51,11 +51,17 @@ public class ShowTimesApi extends HttpServlet {
         resp.getWriter().write(new Gson().toJson(statue));
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req,resp);
+    }
+
     class item {
         private String startTime;
         private String endTime;
         private float price;
         private String room;
+        private int sid;
 
         @Override
         public String toString() {
@@ -64,7 +70,16 @@ public class ShowTimesApi extends HttpServlet {
                     ", endTime='" + endTime + '\'' +
                     ", price='" + price + '\'' +
                     ", room='" + room + '\'' +
+                    ", sid='" + sid + '\'' +
                     '}';
+        }
+
+        public int getSid() {
+            return sid;
+        }
+
+        public void setSid(int sid) {
+            this.sid = sid;
         }
 
         public String getStartTime() {

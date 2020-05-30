@@ -17,8 +17,25 @@
 </head>
 <script type="text/javascript" src="../../static/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/phone.js"></script>
+<script type="text/javascript" src="../../static/js/alert.js"></script>
+<script type="text/javascript">
+    function disp_cancel(content){
+        Alert.showMsg(content);
+    };
+    $(function () {
+        $('.movie-button').click(function () {
+            var text = $('#user').text();
+            if(text==="")
+            {
+                disp_cancel("亲，请先登录！");
+                return false;
+            }
+        });
+    });
+</script>
 <body>
 <div class="whole">
+    <div id="user" hidden="hidden">${sessionScope.user.username}</div>
     <header class="header">
         <a href="javascript:history.back(-1)" class="fa fa-angle-left"></a>
         <c:if test="${sessionScope.search == null}">
@@ -34,7 +51,6 @@
             <c:forEach items="${sessionScope.movieByCinemaName}" varStatus="status">
                 <div class="movie-detail">
                     <label style="text-align: start;display: block;padding: 13px;background: #def;font-size: 16px;    font-weight: bold">${status.current.chinese_name}</label>
-                        ${sessionScope.cinema}
                 <c:if test="${sessionScope.cinema !=null}">
                     <form action="/CTicket/chooseScreenServlet?type=movie&Movie=${status.current.chinese_name}"
                           method="post">

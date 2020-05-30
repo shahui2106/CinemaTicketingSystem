@@ -202,6 +202,7 @@
         },
 
         ajaxRequest: function (_url, fun, _v) {
+            console.log("此时访问的是"+_url);
             var xmlHttpRequest = new XMLHttpRequest();
             xmlHttpRequest.open("GET", _url, true);
             xmlHttpRequest.onreadystatechange = function () {

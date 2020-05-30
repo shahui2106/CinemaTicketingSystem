@@ -26,13 +26,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean existsUsername(String username) {
-
         if (userDao.queryUserByUsername(username) == null) {
            // 等于null,说明没查到，没查到表示可用
            return false;
         }
-
         return true;
 
+    }
+
+    @Override
+    public boolean updatePassword(String username, String phone,String password) {
+        int i = userDao.updatePassword(username, phone, password);
+        if(i>0)
+            return true;
+        return false;
     }
 }

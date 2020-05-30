@@ -33,7 +33,10 @@ public class MovieRecycleApi extends HttpServlet {
             List<Movie> movies = movieDao.queryMovieFromStartToEnd(start, num);
             resp.getWriter().write(new Gson().toJson(new Movies(movies, String.valueOf(allMovie))));
         }else
+        {
+            System.out.println("没有获取到电影列表信息");
             resp.getWriter().write(new Gson().toJson(new Movies(null, String.valueOf(allMovie))));
+        }
     }
 
     @Override

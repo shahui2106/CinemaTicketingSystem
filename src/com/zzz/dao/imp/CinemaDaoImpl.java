@@ -1,6 +1,7 @@
 package com.zzz.dao.imp;
 
 import com.zzz.bean.Cinema;
+import com.zzz.bean.Movie;
 import com.zzz.bean.Screen;
 import com.zzz.dao.BaseDao;
 import com.zzz.dao.CinemaDao;
@@ -37,6 +38,12 @@ public class CinemaDaoImpl extends BaseDao implements CinemaDao {
     }
 
     @Override
+    public Screen queryScreenBySid(int sid) {
+        String sql = "SELECT * FROM cinema,screen,movie WHERE cinema.`cid` = screen.`cid` AND screen.`mid` = movie.`mid` and sid = ?";
+        return queryForOne(Screen.class,sql,sid);
+    }
+
+    @Override
     public List<Cinema> queryIsExistCinema(String cinemaName) {
         String sql = "select * from cinema where name like \"%"+cinemaName+"%\"";
         return queryForList(Cinema.class,sql);
@@ -44,8 +51,8 @@ public class CinemaDaoImpl extends BaseDao implements CinemaDao {
 
     @Override
     public List<Cinema> queryCinemaByCity(String city) {
-        String sql = "select * from cinema where city = ?";
-        return queryForList(Cinema.class,sql,city);
+        String sql = "select * from cinema where city like '%"+city+"%'";
+        return queryForList(Cinema.class,sql);
     }
 
     @Override
@@ -54,9 +61,15 @@ public class CinemaDaoImpl extends BaseDao implements CinemaDao {
         return queryForList(Cinema.class,sql);
     }
 
+    @Override
+    public String querySeatBySid(int Sid) {
+        String sql = "select seat from screen where sid = ?";
+        return (String) queryForSingleValue(sql,Sid);
+    }
+
 
     public static void main(String[] args) {
         CinemaDaoImpl cinemaDao = new CinemaDaoImpl();
-        System.out.println(cinemaDao.queryScreenByCinemaNameOrDirectorOrActors("飞扬"));
+        System.out.println(cinemaDao.querySeatBySid(1));
     }
 }

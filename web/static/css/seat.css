@@ -165,14 +165,14 @@ header span{
     position: relative;
 	overflow:hidden;
 }
-.seats >ul{
+.seats form >ul{
 	width:1200px;
 	position: absolute;
 	top:80px;
 	left:0;
 	border: 2px dashed #32abc5;
 }
-.seats >ul >li{
+.seats form >ul >li{
 	float: left;
     width: 60px;
     height: 60px;
@@ -223,6 +223,7 @@ header span{
     font-size: 26px;
     letter-spacing: 2px;
 	margin-top: 40px;
+	cursor: pointer;
 }
 
 

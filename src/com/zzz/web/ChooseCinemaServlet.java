@@ -32,7 +32,6 @@ public class ChooseCinemaServlet extends HttpServlet {
         else
             filmName = req.getParameter("filmName");
         req.getSession().setAttribute("filmName", filmName);
-        System.out.println("filmName = " + filmName);
         if (filmName != null) {
             screens = cinemaDao.queryScreenByMovieName(filmName);
             req.getSession().setAttribute("cinemaItems", getCinemaItems(screens));

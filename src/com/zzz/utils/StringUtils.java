@@ -2,6 +2,8 @@ package com.zzz.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Zhu
@@ -53,6 +55,37 @@ public class StringUtils {
         }
         return hexValue.toString();
 
+    }
+
+    public static  List<String> compare(String str1,String str2){
+        char[] chars1 = str1.toCharArray();
+        char[] chars2 = str2.toCharArray();
+        List<String> res = new ArrayList<>();
+        for (int i = 0; i < chars1.length; i++) {
+            if(chars1[i] == '1' && chars2[i] == '1'){
+                int cur = i+1;
+                if (cur % 17 != 0)
+                    res.add((cur / 17 + 1) + "排" + (cur % 17) + "座");
+                else
+                    res.add((cur / 17) + "排" + 17 + "座");
+            }
+        }
+        return  res;
+    }
+
+
+    public static String merge(String str1,String str2){
+        char[] chars1 = str1.toCharArray();
+        char[] chars2 = str2.toCharArray();
+        StringBuffer res = new StringBuffer();
+        for (int i = 0; i < chars1.length; i++) {
+            if(chars1[i] == '1' || chars2[i] == '1'){
+                res.append('1');
+            }else {
+                res.append(chars1[i]);
+            }
+        }
+        return res.toString();
     }
 
     /**

@@ -51,7 +51,7 @@
     </header>
 
     <div class="film-length">
-        <span>片长：${sessionScope.movieInfo.length}分钟</span>
+        <span>片长：${sessionScope.movieInfo.length}</span>
         <span class="imax">原版3D</span>
     </div>
 
@@ -82,7 +82,6 @@
                     </div>
                     <div class="buy-btn">
                         <span><b>元</b></span>
-                        <a href="/CTicket/pages/order/choose_seat.jsp">选座购票</a>
                     </div>
                 </li>
         </ul>

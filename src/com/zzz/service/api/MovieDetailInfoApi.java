@@ -25,6 +25,13 @@ public class MovieDetailInfoApi extends HttpServlet {
         if(chineseName!=null){
             Movie movie = movieDao.querySingleMovieInfoByName(chineseName);
             resp.getWriter().write(new Gson().toJson(movie));
+        }else{
+            System.out.println("没有获取到电影详细信息");
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
 }

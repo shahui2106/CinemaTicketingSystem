@@ -27,7 +27,6 @@ public class ChooseScreenServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         String type = req.getParameter("type");
-        System.out.println("type = " + type);
         if (type != null) {
             if (type.equals("cinema"))
                 isCInemaInfo(req, resp);
@@ -40,7 +39,6 @@ public class ChooseScreenServlet extends HttpServlet {
 
     private void isMovieInfo(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
         String movie = new String(req.getParameter("Movie").getBytes("iso-8859-1"),"utf-8");
-        System.out.println("movie = " + movie);
         String cinema = (String) req.getSession().getAttribute("cinema");
         if(movie!=null && cinema != null){
             screens = cinemaDao.queryScreenByMovieNameAndCinemaName(movie, cinema);

@@ -27,4 +27,6 @@ public interface UserDao {
      */
     public int saveUser(User user);
 
+    public int updatePassword(String name,String phone, String password);
+
 }

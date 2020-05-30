@@ -28,15 +28,16 @@
 
     <header class="header">
         <a href="javascript:history.back(-1)" class="fa fa-angle-left"></a>
-        <span class="names">变形金刚5：最后的骑士</span>
+        <span class="names">${sessionScope.filmName}</span>
     </header>
-
+    <span id="seat-flag" hidden="hidden"> ${sessionScope.ticketScreen.seat}</span>
     <div class="seat_head">
-        <h3>北京沃美影城常营店</h3>
+        <h3>${sessionScope.cinema}</h3>
         <span>
-        	<a>今天07-06</a>
-            <a>19:00</a>
-            <a>(国语 3D)</a>
+        	<a>${sessionScope.ticketScreen.show_date}</a><br>
+            <a>${sessionScope.ticketScreen.show_time}</a>
+            <a>(${sessionScope.ticketScreen.language})</a><br>
+            <a>电影时长：${sessionScope.movieInfo.length}</a>
         </span>
     </div>
 
@@ -66,31 +67,53 @@
         <div class="seats" id="seats"></div>
 
     </div>
-    <div class="buttons">确认选择</div>
+    <button id="confirm" class="buttons">确认选择</button>
 
 </div>
 
 <script>
     $(function () {
+        var text = $('#seat-flag').text();
+        console.log("当前座位信息："+text);
         var html = '';
+        html += "<form action='#' method='post'>";
         html += '<ul class="touchs" id="touchs"><div class="screen">大厅屏幕</div>';
-        for (var i = 1; i <= 204; i++) {
-            var selected = (i > 91 && i < 98 ? 'selected' : '');
-            html += '<li class="' + selected + '">';
-            html += '<input type="checkbox" name="seat-' + i + '" id="seat-' + i + '" />';
+        for (var i = 0; i < 204; i++) {
+            var selected = (text[i+1]=='1' ? 'selected' : '');
+            html+='<li class="'+selected+'">';
+            html += '<input type="checkbox" name="seat-' + i + '" id="seat-' + i + '" value="' + i + '" />';
             html += '<label for="seat-' + i + '"></label>';
             html += '</li>';
         }
-        html += '<div class="the_best"></div><div class="crossnum" id="crossnum"></div></ul>';
+        html += '<div class="the_best"></div><div class="crossnum" id="crossnum"></div></ul></form>';
         $('#seats').html(html);
 
 
         $('.selected').children('input').attr({'disabled': 'disabled', 'checked': 'checked'});
 
-
+        var seat = new Array(204);
+        for (var i = 0; i < seat.length; i++) {
+            seat[i] = 0;
+        }
         $('.seats li input').on('click', function () {
             var checklen = $('.seats li').not('.selected').children('input:checked').length;
-            console.log(checklen);
+            if (checklen > 9) {
+                alert("单个用户一次最多只能买9张票！");
+                return false;
+            }
+
+
+            if (seat[this.value] === undefined || seat[this.value] === 0) {
+                seat[this.value] = 1;
+            } else if (seat[this.value] === 1) {
+                seat[this.value] = 0;
+            }
+        });
+
+        $('#confirm').on('click', function () {
+            var seatinfo = seat.join('');
+            console.log("保存时的位置信息"+seatinfo);
+            window.location.href = "/CTicket/paymentServlet?seat=" + seatinfo;
         });
 
 

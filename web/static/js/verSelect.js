@@ -262,6 +262,8 @@ window.verSelector = (function () {
                     parent.querySelector(".verSelector-text").innerText = trim(text);
                     parent.querySelector(".verSelector-focus").classList.remove("verSelector-focus-show");
                     parent.querySelector(".verSelector-items").classList.remove("verSelector-focus-show");
+                    var _url = "http://localhost/CTicket/api/cinemaRecycleApi?city=" + text;
+                    ajaxRequest(_url);
                 } else {
                     this.querySelector(".verSelector-icon-check").classList.toggle("icon-check-box");
                     this.querySelector(".verSelector-icon-check").classList.toggle("icon-check-box-cicre");
@@ -284,6 +286,41 @@ window.verSelector = (function () {
             }
         });
     };
+
+    function ajaxRequest(_url) {
+        var xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.open("GET", _url, true);
+        xmlHttpRequest.onreadystatechange = function () {
+            if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+                var jsonobj = JSON.parse(xmlHttpRequest.responseText);
+                var cinema = jsonobj.object;
+                var cinema_ul = document.getElementById("cinema_recycle");
+                var addelementContent = "";
+                var i = 0;
+                for(;i<cinema.length;i++) {
+                    addelementContent += "<li>";
+                    addelementContent += "<form action=\"/CTicket/chooseMovieServlet?type=cinema&cinemaName="+cinema[i].name+"\" method=\"post\">";
+                    addelementContent +="<div class=\"film_addr\">";
+                    addelementContent +="<span class=\"cinema_nameInput\">"+cinema[i].name+"</span></div>";
+                    addelementContent +="<div class=\"det_addr\">";
+                    addelementContent +="<span>"+cinema[i].address+"</span>";
+                    addelementContent +="<p style=\"padding: 0;  padding-left: 24px;\">";
+                    addelementContent +="影院电话："+cinema[i].phone+"</p></div>";
+                    addelementContent +="<div style=\"float: right\">";
+                    addelementContent +="<button class='cinema-buy-button' type=\"submit\">影院购票</button>";
+                    addelementContent +="</div>";
+                    addelementContent +="</form>";
+                    addelementContent +="</li>";
+                }
+                cinema_ul.innerHTML = addelementContent;
+                console.log(jsonobj);
+            }
+        };
+        xmlHttpRequest.send();
+    };
+
+
+
     //点击取消按钮
     var reset_checks = function () {
         var actives = this.parentElement.parentElement.querySelectorAll(".actives");

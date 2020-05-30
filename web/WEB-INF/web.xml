@@ -26,6 +26,16 @@
     </servlet-mapping>
 
     <servlet>
+        <display-name>用户订单</display-name>
+        <servlet-name>orderServlet</servlet-name>
+        <servlet-class>com.zzz.web.OrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>orderServlet</servlet-name>
+        <url-pattern>/orderServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <display-name>选择电影院</display-name>
         <servlet-name>chooseCinemaServlet</servlet-name>
         <servlet-class>com.zzz.web.ChooseCinemaServlet</servlet-class>
@@ -53,6 +63,26 @@
         <servlet-name>chooseScreenServlet</servlet-name>
         <url-pattern>/chooseScreenServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <display-name>选择位置</display-name>
+        <servlet-name>chooseSeatServlet</servlet-name>
+        <servlet-class>com.zzz.web.ChooseSeatServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chooseSeatServlet</servlet-name>
+        <url-pattern>/chooseSeatServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>影片支付</display-name>
+        <servlet-name>paymentServlet</servlet-name>
+        <servlet-class>com.zzz.web.PaymentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>paymentServlet</servlet-name>
+        <url-pattern>/paymentServlet</url-pattern>
+    </servlet-mapping>
+
 
 
     <servlet>
@@ -112,5 +142,15 @@
     <servlet-mapping>
         <servlet-name>showingMovieApi</servlet-name>
         <url-pattern>/api/showingMovieApi</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>获取电影院列表信息接口</display-name>
+        <servlet-name>cinemaRecycleApi</servlet-name>
+        <servlet-class>com.zzz.service.api.CinemaRecycleApi</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cinemaRecycleApi</servlet-name>
+        <url-pattern>/api/cinemaRecycleApi</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -2132,6 +2132,7 @@ function menuX(renderTo, cfg) {
                 var show_time = jsonobj.object;
                 var i = 0;
                 for(;i<show_time.length;i++) {
+                    addelementContent +="<form action='/CTicket/chooseSeatServlet?sid="+show_time[i].sid+"' method='post'>";
                     addelementContent += "<li> <div class=\"ticket-info\"> ";
                     addelementContent += " <span class=\"start\">"+show_time[i].startTime+"</span>";
                     addelementContent += "   <span class=\"styles\">原版3D</span>";
@@ -2139,7 +2140,8 @@ function menuX(renderTo, cfg) {
                     addelementContent += "   <span>"+show_time[i].room+"</span></div>";
                     addelementContent += "  <div class=\"buy-btn\">";
                     addelementContent += "  <span>"+show_time[i].price+"<b>元</b></span>";
-                    addelementContent += " <a href=\"/CTicket/pages/order/choose_seat.jsp\" >选座购票</a></div> </li>";
+                    addelementContent += " <button type='submit' >选座购票</button></div> </li>";
+                    addelementContent += "</form>";
                 }
                 tickets_list.innerHTML = addelementContent;
                 console.log(jsonobj);

@@ -1,0 +1,66 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, textarea, th, td {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: "楷体";
+    -webkit-appearance: none;
+}
+
+body {
+    font-size: 16px;
+    background-color: #f0f0f022;
+    background: url("../../static/img/payment_bg.png");
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+.main {
+    text-align: center;
+    font-size: 16px;
+    width: 1360px;
+    height: 600px;
+    background-color: #DDEEFF99;
+    margin: 60px auto;
+    border: 1px solid #cdcdcd;
+    border-radius: 7px;
+    box-shadow: 3px 3px 3px #efefef;
+}
+
+table {
+    width: 1600px;
+    font-size: 18px;
+    color: #3f3f3f;
+	table-layout: fixed;
+}
+
+tr {
+    line-height: 42px;
+}
+
+td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title {
+    font-size: 32px;
+    margin: 18px;
+    display: block;
+}
+
+.wel_word {
+    margin-top: -27px;
+    font-size: 18px;
+    float: right;
+}
+
+.fixwid{
+	width: 90px;
+}
+
+.order_table{
+	width: 1360px;
+	height: 580px;
+	overflow: auto;
+}

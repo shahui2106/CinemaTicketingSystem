@@ -20,6 +20,7 @@
 <script type="text/javascript" src="./static/js/scrollbar.js"></script>
 <script type="text/javascript" src="./static/js/jquery_carousel_slider.js"></script>
 <script type="text/javascript" src="./static/js/jquery.z-pager.js"></script>
+<script type="text/javascript" src="./static/js/alert.js"></script>
 <script src="./static/js/area.js"></script><!--所有城市数据-->
 <script src="./static/js/select.js"></script><!--默认调用方法-->
 <script src="./static/js/verSelect.js"></script><!--封装插件-->
@@ -45,14 +46,22 @@
             boundary = (cardw + margin) * (listn) - singlemove;
 
             $.each(result['Movie'], function (i, field) {
-                $('.movieul > .movieli:first').after('<li class="movieli"><img src=' + field.img_url + '><div class=\'title\' text-align=\'start\'>' + field.chinese_name + '<br><span>' + field.introduction + '</span></div></li>');
+                $('.movieul > .movieli:first').after('<a class="showing-movie-a" href="/CTicket/chooseCinemaServlet?encoding=utf-8&filmName='+field.chinese_name+'"><li class="movieli" ><img src=' + field.img_url + '><div class=\'title\' text-align=\'start\'>' + field.chinese_name + '<br><span>' + field.introduction + '</span></div></li></a>');
             });
             $('.slide li').css("margin-right", margin);
+            $('.slide li').css("cursor", "pointer");
             $('.slide li').width(cardw);
             $('.slide li').height(cardh);
             $('.slide img').width(cardw);
             $('.slide img').height(cardh);
             $('.title').width(cardw);
+            $('.slide li').click(function () {
+                var username = $("#user-name").text();
+                if(username ==="亲，请登录！"){
+                    disp_cancel("亲，请先登录！");
+                    return false;
+                }
+            });
         });
 
 
@@ -116,7 +125,7 @@
         <div class="vivo-search">
             <div class="search-box">
                 <form action='/CTicket/chooseMovieServlet?type=search' method='post'>
-                    <input type="text" placeholder="影院、影片、演员" name='search' class='data_q' autocomplete="off"/><button>搜索</button><
+                    <input type="text" placeholder="影院、影片、演员" name='search' id='data_q' autocomplete="off"/><button id="search_button">搜索</button>
                     <a class="close"></a>
                 </form>
             </div>
@@ -137,7 +146,6 @@
             <a href="javascript:;" class="mt-tabpage-item mt-tabpage-item-cur">首页</a>
             <a href="javascript:;" class="mt-tabpage-item">影片</a>
             <a href="javascript:;" class="mt-tabpage-item">影院</a>
-            <a href="javascript:;" class="mt-tabpage-item">发现</a>
 
             <div class="search-user"
                  style="float:right;zoom:1;display:block;margin-right: 16%;margin-top: -1%;">
@@ -152,8 +160,13 @@
                 </div>
             </div>
             <label class="login_name"
-                   style="font-size: 14px;display: block;width: 85px;margin: 42px 0;float: right; margin-right: -256px;"><a
-                    href="http://localhost/CTicket/pages/user/login.jsp"> ${ empty sessionScope.user ? "亲，请登录！":sessionScope.user.username}</a></label>
+                   style="font-size: 14px;display: block;width: 85px;margin: 42px 0;float: right; margin-right: -256px;">
+                <c:if test="${ empty sessionScope.user}">
+                <a id="user-name" href="/CTicket/pages/user/login.jsp">亲，请登录！</a></label>
+                 </c:if>
+            <c:if test="${ !empty sessionScope.user}">
+                <a id="user-name" onClick="disp_confirm()"> ${sessionScope.user.username}</a></label>
+            </c:if>
         </div>
         <div class="mt-tabpage-count">
             <ul class="mt-tabpage-cont__wrap" style="width: 6000px;left:0">
@@ -182,7 +195,7 @@
                         </div>
                     </div>
                     <div class='box'>
-                        <h3>正在热映</h3>
+                        <h3>即将热映</h3>
                         <div class='tri'></div>
                         <div class='slide-wrap'>
                             <div class='border'>
@@ -254,7 +267,7 @@
                                         <h2 style="margin-left: 13px">电影简介：</h2>
                                         <p class="movie-introduction">
                                         </p>
-                                        <button class="movie-button" type="submit">点击购票</button>
+                                        <button id="movie-buy-button" class="movie-button" type="submit">点击购票</button>
                                     </div>
                                 </form>
                             </div>
@@ -271,7 +284,7 @@
                         <div class="scroll_wrap">
                             <div class="scroll_cont">
                                 <div class="address">
-                                    <ul>
+                                    <ul id="cinema_recycle">
                                         <c:forEach items="${sessionScope.allCinema}" varStatus="statues">
                                             <li>
                                                 <form action="/CTicket/chooseMovieServlet?type=cinema&cinemaName=${statues.current.name}" method="post">
@@ -284,9 +297,8 @@
                                                             影院电话：${statues.current.phone}</p>
                                                     </div>
                                                     <div style="float: right">
-                                                        <button type="submit">影院购票</button>
+                                                        <button class="cinema-buy-button" type="submit">影院购票</button>
                                                     </div>
-
                                                 </form>
                                             </li>
                                         </c:forEach>
@@ -299,7 +311,6 @@
                         </div>
                     </div>
                 </li>
-                <li class="mt-tabpage-item">Cont4</li>
             </ul>
         </div>
     </div>
@@ -332,6 +343,64 @@
     function detailInfo(index) {
         $().updateDetailInfo($('.movie-item-' + index).text());
     }
+
+    function disp_cancel(content){
+        Alert.showMsg(content);
+    }
+
+    function disp_confirm(){
+        Alert.showConfirmMsg("确定要退出账户吗？",function(){window.location.href='http://localhost/CTicket/userServlet?action=logout';});
+    }
+
+</script>
+
+<script type="text/javascript">
+    // 页面加载完成之后
+    $(function () {
+        $("#search_button").click(function () {
+            var searchContent = $("#data_q").val();
+            if (searchContent==="") {
+                disp_cancel("搜索内容不能为空！");
+                return false;
+            }
+        });
+
+
+        $("#movie-buy-button").click(function () {
+            var username = $("#user-name").text();
+            if(username ==="亲，请登录！"){
+                disp_cancel("亲，请先登录！");
+                return false;
+            }
+        });
+
+        $(".cinema-buy-button").click(function () {
+            var username = $("#user-name").text();
+            if(username ==="亲，请登录！"){
+                disp_cancel("亲，请先登录！");
+                return false;
+            }
+        });
+
+        $(".showing-movie-a").click(function () {
+            var username = $("#user-name").text();
+            if(username ==="亲，请登录！"){
+                disp_cancel("亲，请先登录！");
+                return false;
+            }
+        });
+
+        $(".index-nav-frame-line-li").click(function () {
+            var username = $("#user-name").text();
+            if(username ==="亲，请登录！"){
+                disp_cancel("亲，请先登录！");
+                return false;
+            }else {
+                window.location.href = "/CTicket/orderServlet?action=queryOrder";
+            }
+        });
+    });
+
 </script>
 </body>
 </html>

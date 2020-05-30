@@ -29,6 +29,11 @@ public class ShowingMovieApi extends HttpServlet {
         resp.getWriter().write(gson.toJson(showingMovies));
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+
     static class Movies {
         private List<Movie> Movie;
 

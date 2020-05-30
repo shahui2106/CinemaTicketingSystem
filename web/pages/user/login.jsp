@@ -16,21 +16,14 @@
         $(function () {
             // 给登录绑定单击事件
             $("#sub_btn").click(function () {
-                // 验证用户名：必须由字母，数字下划线组成，并且长度为5到12位
                 var usernameText = $("#username").val();
-                //1 获取用户名输入框里的内容
-                //3 使用test方法验证
-                console.log("usernameText" + usernameText);
                 if (usernameText==="") {
-                    //4 提示用户结果
                     $("span.errorMsg").text("用户名不能为空！");
                     return false;
                 }
 
                 var passwordText = $("#password").val();
-                //3 使用test方法验证
                 if (passwordText==="") {
-                    //4 提示用户结果
                     $("span.errorMsg").text("密码不能为空！");
                     return false;
                 }
@@ -76,6 +69,7 @@
                         <br/>
                         <br/>
                         <input type="submit" value="登录" id="sub_btn"/>
+                        <a href="/CTicket/pages/user/forgetpassword.jsp" style="float: right;margin-top: 8px;color: #0a8cd2;">忘记密码</a>
                     </form>
                 </div>
 
