@@ -33,7 +33,7 @@ public class CinemaDaoImpl extends BaseDao implements CinemaDao {
 
     @Override
     public List<Screen> queryScreenByCinemaNameOrDirectorOrActors(String search) {
-        String sql = "SELECT DISTINCT img_url,chinese_name,english_name,LENGTH,director,actors,country,rating,introduction,TYPE FROM cinema,screen,movie WHERE cinema.`cid` = screen.`cid` AND screen.`mid` = movie.`mid` AND (NAME LIKE '%"+search+"%' OR director  LIKE '%"+search+"%' OR actors  LIKE '%"+search+"%'  ) ORDER BY price";
+        String sql = "SELECT DISTINCT img_url,chinese_name,english_name,LENGTH,director,actors,country,rating,introduction,TYPE FROM cinema,screen,movie WHERE cinema.`cid` = screen.`cid` AND screen.`mid` = movie.`mid` AND (NAME LIKE '%"+search+"%' OR director  LIKE '%"+search+"%' OR actors  LIKE '%"+search+"%' OR chinese_name LIKE '%"+search+"%') ORDER BY price";
         return queryForList(Screen.class,sql);
     }
 
@@ -65,6 +65,12 @@ public class CinemaDaoImpl extends BaseDao implements CinemaDao {
     public String querySeatBySid(int Sid) {
         String sql = "select seat from screen where sid = ?";
         return (String) queryForSingleValue(sql,Sid);
+    }
+
+    @Override
+    public List<Screen> queryAllScreen() {
+        String sql = "SELECT * FROM cinema,screen,movie WHERE cinema.`cid` = screen.`cid` AND screen.`mid` = movie.`mid` limit 0,200";
+        return queryForList(Screen.class,sql);
     }
 
 

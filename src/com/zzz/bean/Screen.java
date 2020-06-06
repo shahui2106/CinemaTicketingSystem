@@ -263,4 +263,14 @@ public class Screen {
     public void setShowing(String showing) {
         this.showing = showing;
     }
+
+    public int getSeatNum(){
+        int num = 0;
+        for (int i = 0; i < seat.length(); i++) {
+            if(seat.charAt(i)=='1')
+                num++;
+        }
+        return num;
+    }
+
 }

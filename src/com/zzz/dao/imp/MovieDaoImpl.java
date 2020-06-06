@@ -41,6 +41,12 @@ public class MovieDaoImpl extends BaseDao implements MovieDao {
         return queryForOne(Movie.class,sql,title);
     }
 
+    @Override
+    public List<Movie> queryAllMovie() {
+        String sql = "select * from movie";
+        return queryForList(Movie.class,sql);
+    }
+
     public static void main(String[] args) {
         MovieDaoImpl movieDao = new MovieDaoImpl();
         System.out.println(movieDao.querySingleMovieInfoByName("神奇女侠"));

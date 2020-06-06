@@ -42,4 +42,6 @@ public interface MovieDao {
      */
     public Movie querySingleMovieInfoByName(String title);
 
+    public List<Movie> queryAllMovie();
+
 }

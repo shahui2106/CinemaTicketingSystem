@@ -73,14 +73,15 @@
 
 <script>
     $(function () {
+        var seatNum = 0;
         var text = $('#seat-flag').text();
-        console.log("当前座位信息："+text);
+        console.log("当前座位信息：" + text);
         var html = '';
         html += "<form action='#' method='post'>";
         html += '<ul class="touchs" id="touchs"><div class="screen">大厅屏幕</div>';
         for (var i = 0; i < 204; i++) {
-            var selected = (text[i+1]=='1' ? 'selected' : '');
-            html+='<li class="'+selected+'">';
+            var selected = (text[i + 1] == '1' ? 'selected' : '');
+            html += '<li class="' + selected + '">';
             html += '<input type="checkbox" name="seat-' + i + '" id="seat-' + i + '" value="' + i + '" />';
             html += '<label for="seat-' + i + '"></label>';
             html += '</li>';
@@ -96,13 +97,11 @@
             seat[i] = 0;
         }
         $('.seats li input').on('click', function () {
-            var checklen = $('.seats li').not('.selected').children('input:checked').length;
-            if (checklen > 9) {
+            seatNum = $('.seats li').not('.selected').children('input:checked').length;
+            if (seatNum > 9) {
                 alert("单个用户一次最多只能买9张票！");
                 return false;
             }
-
-
             if (seat[this.value] === undefined || seat[this.value] === 0) {
                 seat[this.value] = 1;
             } else if (seat[this.value] === 1) {
@@ -112,8 +111,10 @@
 
         $('#confirm').on('click', function () {
             var seatinfo = seat.join('');
-            console.log("保存时的位置信息"+seatinfo);
-            window.location.href = "/CTicket/paymentServlet?seat=" + seatinfo;
+            if (seatNum === 0)
+                alert("请选择一个座位号！");
+            else
+                window.location.href = "/CTicket/paymentServlet?seat=" + seatinfo;
         });
 
 

@@ -68,4 +68,6 @@ public interface CinemaDao {
      */
     public String querySeatBySid(int Sid);
 
+    public List<Screen> queryAllScreen();
+
 }

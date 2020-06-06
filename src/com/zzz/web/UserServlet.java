@@ -65,7 +65,13 @@ public class UserServlet extends BaseServlet {
             // 保存用户登录的信息到Session域中
             req.getSession().setAttribute("user", loginUser);
             //跳到成功页面login_success.html
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            if (loginUser.getType().equals("1"))
+            {
+                resp.sendRedirect("/CTicket/pages/manager/manager.jsp");
+            }
+
+            else
+                req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }
 
     }
@@ -112,7 +118,7 @@ public class UserServlet extends BaseServlet {
                 userService.registUser(new User(username, StringUtils.string2MD5(password), phone, "0"));
 //
 //        跳到注册成功页面 regist_success.jsp
-                req.setAttribute("type","regist");
+                req.setAttribute("type", "regist");
                 req.getRequestDispatcher("/pages/user/regist_success.jsp").forward(req, resp);
             }
         } else {
@@ -147,12 +153,10 @@ public class UserServlet extends BaseServlet {
             if (userService.existsUsername(username)) {
 
                 boolean res = userService.updatePassword(username, phone, StringUtils.string2MD5(password));
-                if (res)
-                {
-                    req.setAttribute("type","forget");
+                if (res) {
+                    req.setAttribute("type", "forget");
                     req.getRequestDispatcher("/pages/user/regist_success.jsp").forward(req, resp);
-                }
-                else {
+                } else {
                     // 把回显信息，保存到Request域中
                     req.setAttribute("msg", "手机号不存在！！");
                     req.setAttribute("username", username);

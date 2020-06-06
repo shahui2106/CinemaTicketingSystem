@@ -33,7 +33,6 @@
 					if (!usernamePatt.test(usernameText)) {
 						//4 提示用户结果
 						$("span.errorMsg").text("用户名不合法！");
-
 						return false;
 					}
 
